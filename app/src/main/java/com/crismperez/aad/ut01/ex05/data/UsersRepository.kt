@@ -9,7 +9,7 @@ class UsersRepository(val localSource: UsersLocalDataSource,
 
     fun getUsers(): List<User>{
 
-        var users = localSource.getUsers()
+       var users = localSource.getUsers()
         if (users == null){
             users = remoteSource.getUser()
             localSource.saveUsers(users)
@@ -18,10 +18,16 @@ class UsersRepository(val localSource: UsersLocalDataSource,
     }
 
     fun getUserById (userId : Int) :User{
-        // verificar en local sino en remoto
+        var user = localSource.findById(userId)
+            if(user == null){
+                user = remoteSource.getUsers(userId)
+            }
+        return user
+
     }
 
     fun removeUser (userId: Int){
+
 
     }
 }

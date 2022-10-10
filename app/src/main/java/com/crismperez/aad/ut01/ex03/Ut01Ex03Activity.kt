@@ -46,6 +46,4 @@ class Ut01Ex03Activity : AppCompatActivity() {
         secure.saveNews(News(1,"News1","News1","summary1"))
     }
 
-
-
 }

@@ -16,8 +16,8 @@ class UsersRemoteDataSource {
         )
     }
 
-    fun getUser(userId: Int) : User {
-
+    fun getUsers(userId: Int) : User {
+        return User(userId, "User$userId", "Username$userId")
     }
 
 }

@@ -20,10 +20,13 @@ class Ut01Ex05Activity : AppCompatActivity() {
     private fun init(){
 
         val usersRepository = UsersRepository(
-            UsersLocalDataSource(), UsersRemoteDataSource()
+            UsersLocalDataSource(this.getPreferences(MODE_PRIVATE)), UsersRemoteDataSource()
         )
 
         val users = usersRepository.getUsers()
         Log.d("@dev", "Users: $users")
+
+        val user = usersRepository.getUserById(2)
+        Log.d("@dev", "User:$user")
     }
 }
