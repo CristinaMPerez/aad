@@ -23,8 +23,13 @@ class UsersLocalDataSource (val sharedPref:SharedPreferences){
         editor.apply()
     }
 
-    fun getUsers() : List<User>? {
-        return emptyList()
+    fun getUsers() : List<User> {
+        val userList = mutableListOf<User>()
+        sharedPref.all.forEach { entry ->
+            val users = gson.fromJson(entry.value as String, User::class.java)
+            userList.add(users)
+        }
+        return userList
     }
 
     fun findById(userId : Int): User?{
@@ -35,9 +40,7 @@ class UsersLocalDataSource (val sharedPref:SharedPreferences){
 
     }
 
-    fun remove(userId: Int){
-
-        val jsonUser = sharedPref.getString(userId.toString(),"")
-
+    fun remove(userId: Int) {
+        sharedPref.edit().remove(userId.toString()).apply()
     }
 }

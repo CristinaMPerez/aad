@@ -28,5 +28,11 @@ class Ut01Ex05Activity : AppCompatActivity() {
 
         val user = usersRepository.getUserById(2)
         Log.d("@dev", "User:$user")
+
+        usersRepository.removeUser(3)
+
+        val users1 = usersRepository.getUsers()
+        Log.d("@dev", "Users: $users1")
+
     }
 }
